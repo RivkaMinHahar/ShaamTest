@@ -1,0 +1,52 @@
+<div class="example-container" >
+<mat-toolbar  class="example-toolbar ex-toolbar">
+  <button mat-icon-button (click)="snav.toggle()"><mat-icon class="fas fa-bars"  > Countries</mat-icon></button>
+</mat-toolbar>
+<mat-sidenav-container class = "example-sidenav-container">
+    
+    <mat-sidenav  #snav  mode = "side" opened class="example-sidenav-container">
+         <!-- <a class="navbar-brand" href="#">
+            Shaam
+          </a>
+        -->
+           
+      
+        <section class = "tp-section first">
+        <form class="">
+            <input
+              autocomplete="off"
+              type="search"
+              class="form-control rounded"
+              placeholder='Search (ctrl + "/" to focus)'
+              style="min-width: 225px;"
+            />
+            <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+          </form>
+       </section>
+       <section class = "tp-section second">
+        <mat-nav-list>
+          <mat-list-item class="letter" *ngFor="let link of dataSourceLetters">
+             <a matLine href="...">{{ link.letter }}</a>
+             <button mat-icon-button (click)="showCountries(link)">
+                <mat-icon>Show Countries</mat-icon>
+             </button>
+             <!-- <section class = "tp-section2">
+             <mat-nav-list >
+              
+              <mat-list-item  id="reg"   class="letter" *ngFor="let linkR of dataSourceRegions; trackBy:trackByLinkLetter">
+                <a matLine href="...">{{ linkR.region }}</a>
+                <button mat-icon-button (click)="showInfo(linkR)">
+                   <mat-icon>Show Info</mat-icon>
+                </button>
+              </mat-list-item>
+             </mat-nav-list>
+             </section> -->
+          </mat-list-item>
+        </mat-nav-list>
+       </section>
+      <!-- </div> -->
+    </mat-sidenav>
+    <mat-sidenav-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+</div>

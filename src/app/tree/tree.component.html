@@ -1,0 +1,72 @@
+<div class=" example-container basic-container"  [(ngModel)]="selectedItem" >
+    <mat-toolbar  class="example-toolbar ex-toolbar">
+      <button mat-icon-button ><mat-icon class="fas fa-bars"  > Countries</mat-icon></button>
+  
+     <form class="search "  >
+      <span class="input-group-text border-0"  >
+         
+        <button  mat-icon-button  (click)="showCountries(serch.value)" class="button"  >
+          <i class="fas fa-search"></i></button>
+        </span>
+      <input #serch
+      autocomplete="off"
+      type="search"
+      class="input-group form-control rounded"
+      placeholder='Search '
+      style="min-width: 150px;"
+     
+    />
+        
+      </form>  
+    </mat-toolbar>
+    
+    
+      
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <!-- use a disabled button to provide padding for tree leaf -->
+
+      <button  mat-icon-button  (click)="showCountries(node.country)" class="button"  >
+         {{node.country}}
+        </button>
+      </mat-tree-node>
+      <!-- This is the tree node template for expandable nodes -->
+ 
+  <mat-tree-node  *matTreeNodeDef="let node;when: hasChild " matTreeNodePadding  >
+        <button mat-icon-button matTreeNodeToggle  
+                [attr.aria-label]="'Toggle ' + node.country"  >
+          <mat-icon class="mat-icon-rtl-mirror"  >
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+      
+       <a> {{node.country}}</a>
+ 
+      </mat-tree-node>
+    </mat-tree>
+   
+    <div class="cardProp" *ngIf="selected">
+      <h1>{{selctedCountry.name}}</h1>
+      <h3>capital:  {{selctedCountry.capital}}</h3>
+      <h3>population:  {{selctedCountry.population | number}}  </h3>
+      <h3 >currencies: </h3>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let link of selctedCountry.currencies">
+          <p matLine class="curr">
+            <span> {{link.symbol }} </span>
+            <span> {{link.code}} </span>
+            <span > {{link.name}} </span>
+          </p>
+        </mat-list-item>
+        
+        <h3 >flag: </h3>
+        <div>
+          <img class="imgProp" [src]="selctedCountry.flag">
+        </div>
+    
+     </mat-nav-list>
+      
+    
+   </div>
+
+</div>
